@@ -31,8 +31,8 @@ function generate_certificate(callback) {
   exec('node bin/letsencrypt.js --agree-tos --email ' + config['letsEncryptEmail'] + 
             ' --webroot --webroot-path ' + webroot +
             ' --config-dir' + configdir + 
-            ' --domains ' + env['applicationFqdn'] + 
-            ' --server ' + env['letsEncryptServer'],
+            ' --domains ' + config['applicationFqdn'] + 
+            ' --server ' + config['letsEncryptServer'],
       options,
       (error, stdout, stderr) => {
         if(error) {
@@ -40,8 +40,8 @@ function generate_certificate(callback) {
           callback(true);
         } else {
           callback(false, { 'cert': cert, '{key}': key});
-          var cert = fs.readFileSync(path.join(configdir, 'live', env['applicationFqdn'], 'cert.pem')); 
-          var key = fs.readFileSync(path.join(configdir, 'live', env['applicationFqdn'], 'cert.pem'));
+          var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')); 
+          var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem'));
           callback(false, { 'cert': cert, '{key}': key});
         }
       }
