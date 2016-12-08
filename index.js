@@ -26,7 +26,7 @@ function generate_certificate(callback) {
   var configdir = path.join(cwd, 'config');
 
   var options = {
-    'cwd': path.join(__dirname, 'node_modules')
+    'cwd': path.join(__dirname, 'node_modules', 'letsencrypt-cli')
   }
   exec('node bin/letsencrypt.js --agree-tos --email ' + config['letsEncryptEmail'] + 
             ' --webroot --webroot-path ' + webroot +
@@ -54,11 +54,11 @@ app.get('/', function (req, res) {
 app.get('/generate_cert', function (request, response) {
   generate_certificate(function(error, data) {
     if(error) {
-      response.statusCode(503).end();
+      response.status(503).end();
     } else {
       response.set({'Content-Type': 'application/json'});
       resposne.write(JSON.stringify(data));
-      response.statusCode(201).end();
+      response.status(201).end();
     }
   });
 });
