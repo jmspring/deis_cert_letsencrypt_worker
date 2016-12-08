@@ -30,7 +30,7 @@ function generate_certificate(callback) {
   }
   exec('node bin/letsencrypt.js --agree-tos --email ' + config['letsEncryptEmail'] + 
             ' --webroot --webroot-path ' + webroot +
-            ' --config-dir' + configdir + 
+            ' --config-dir ' + configdir + 
             ' --domains ' + config['applicationFqdn'] + 
             ' --server ' + config['letsEncryptServer'],
       options,
