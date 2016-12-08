@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "express": "4.14.x",
-    "letsencrypt-cli": "2.x"
+    "letsencrypt-cli": "2.x",
+    "request": "2.79.x"
   },
   "keywords": [
     "letsencrypt"
