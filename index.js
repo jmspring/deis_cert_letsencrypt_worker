@@ -41,7 +41,9 @@ function generate_certificate(callback) {
         } else {
           var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')).toString('utf-8'); 
           var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'privkey.pem')).toString('utf-8');
-          callback(false, { 'cert': cert, 'key': key});
+          var chain = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'chain.pem')).toString('utf-8'); 
+          var fullchain = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'fullchain.pem')).toString('utf-8'); 
+          callback(false, { 'cert': cert, 'key': key, 'chain': chain, 'fullchain': fullchain });
         }
       }
   );
