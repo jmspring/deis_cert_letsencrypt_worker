@@ -39,8 +39,8 @@ function generate_certificate(callback) {
           console.log(`exec error: ${error}`);
           callback(true);
         } else {
-          var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')); 
-          var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem'));
+          var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')).toString('utf-8'); 
+          var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')).toString('utf-8');
           callback(false, { 'cert': cert, '{key}': key});
         }
       }
