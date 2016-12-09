@@ -39,7 +39,6 @@ function generate_certificate(callback) {
           console.log(`exec error: ${error}`);
           callback(true);
         } else {
-          callback(false, { 'cert': cert, '{key}': key});
           var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')); 
           var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem'));
           callback(false, { 'cert': cert, '{key}': key});
@@ -54,19 +53,14 @@ app.get('/', function (req, res) {
 app.get('/generate_cert', function (request, response) {
   //response.write(JSON.stringify(data));
   generate_certificate(function(error, data) {
-    /*
     if(error) {
       response.status(503).end();
     } else {
-      //response.set({'Content-Type': 'application/json'});
-      //response.status(201);
+      response.set({'Content-Type': 'application/json'});
+      response.status(201);
       response.write(JSON.stringify(data));
       response.end();
     }
-    */
-    response.status(201);
-    response.write(JSON.stringify({'a': 1}));
-    response.end();
   });
 });
 app.use(express.static(path.join(__dirname, 'www')));
