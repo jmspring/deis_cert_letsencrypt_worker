@@ -52,7 +52,12 @@ app.get('/', function (req, res) {
   res.send('Nothing here.')
 });
 app.get('/generate_cert', function (request, response) {
-  generate_certificate(function(error, data) {
+  response.set({'Content-Type': 'application/json'});
+  response.status(201);
+  response.write(JSON.stringify({'a': 1}));
+  response.end();
+  //response.write(JSON.stringify(data));
+  /*generate_certificate(function(error, data) {
     if(error) {
       response.status(503).end();
     } else {
@@ -61,7 +66,7 @@ app.get('/generate_cert', function (request, response) {
       response.write(JSON.stringify(data));
       response.end();
     }
-  });
+  });*/
 });
 app.use(express.static(path.join(__dirname, 'www')));
 
