@@ -41,7 +41,7 @@ function generate_certificate(callback) {
         } else {
           var cert = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'cert.pem')).toString('utf-8'); 
           var key = fs.readFileSync(path.join(configdir, 'live', config['applicationFqdn'], 'privkey.pem')).toString('utf-8');
-          callback(false, { 'cert': cert, '{key}': key});
+          callback(false, { 'cert': cert, 'key': key});
         }
       }
   );
