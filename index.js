@@ -56,8 +56,8 @@ app.get('/generate_cert', function (request, response) {
     if(error) {
       response.status(503).end();
     } else {
-      response.set({'Content-Type': 'application/json'});
-      response.status(201);
+      //response.set({'Content-Type': 'application/json'});
+      //response.status(201);
       response.write(JSON.stringify(data));
       response.end();
     }
